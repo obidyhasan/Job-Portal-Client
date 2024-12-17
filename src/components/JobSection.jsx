@@ -6,7 +6,7 @@ const JobSection = () => {
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
     axios
-      .get("https://job-portal-server-rho-six.vercel.app/jobs")
+      .get("http://localhost:5000/jobs")
       .then((result) => {
         setJobs(result.data);
       })

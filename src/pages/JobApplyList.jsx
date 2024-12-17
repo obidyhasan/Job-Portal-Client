@@ -8,9 +8,9 @@ const JobApplyList = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://job-portal-server-rho-six.vercel.app/apply-jobs?email=${user.email}`
-      )
+      .get(`http://localhost:5000/apply-jobs?email=${user.email}`, {
+        withCredentials: true,
+      })
       .then((result) => {
         setJobs(result.data);
       })

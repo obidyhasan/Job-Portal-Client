@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import axios from "axios";
 
 const Login = () => {
   const { userLogin, loginWithGoogle, setLoading } = useContext(AuthContext);
@@ -16,6 +17,16 @@ const Login = () => {
 
     userLogin(email, password)
       .then(() => {
+        axios
+          .post(
+            "http://localhost:5000/jwt",
+            { email },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res.data);
+          });
+
         setLoading(false);
         navigate(location.state ? location.state : "/");
       })
